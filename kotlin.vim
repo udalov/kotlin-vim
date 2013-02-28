@@ -1,7 +1,7 @@
 " Vim syntax file
 " Language: Kotlin
 " Maintainer: Alexander Udalov
-" Latest Revision: 24 November 2012
+" Latest Revision: 28 February 2013
 
 if exists("b:current_syntax")
   finish
@@ -27,12 +27,12 @@ syn keyword ktConstant null
 syn match ktLineComment "\/\/.*$"
 syn region ktComment start="\/\*" end="\*\/"
 
-syn region ktString start='"' end='"'
+syn region ktString start='"' skip='\\"' end='"'
 syn region ktString start='"""' end='"""'
 syn match ktCharacter "'.'"
 
-syn match ktNumber "[0-9]\+"
-syn match ktFloat "[0-9]\+\.[0-9]*"
+syn match ktNumber "\<[0-9]\+"
+syn match ktFloat "\<[0-9]\+\.[0-9]*"
 
 syn match ktExclExcl "!!"
 syn match ktArrow "->"
