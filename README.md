@@ -2,10 +2,11 @@
 
 ## Installation
 
-0. `mkdir -p ~/.vim/syntax`
-1. Copy `kotlin.vim` to `~/.vim/syntax`
-2. Add `au BufRead,BufNewFile *.kt setfiletype kotlin` to `~/.vimrc`
-3. Restart Vim
+0. `mkdir -p ~/.vim/{syntax,indent}`
+1. `cp syntax/kotlin.vim ~/.vim/syntax/kotlin.vim`
+2. `cp indent/kotlin.vim ~/.vim/indent/kotlin.vim`
+3. Add `au BufRead,BufNewFile *.kt setfiletype kotlin` to `~/.vimrc`
+4. Restart Vim
 
 ##### Enjoy!
 
