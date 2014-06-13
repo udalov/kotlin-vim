@@ -39,6 +39,8 @@ syn match ktNumber "\v<0[Xx][0-9A-Fa-f]+L?"
 syn match ktNumber "\v<0[Bb][0-9]+L?"
 syn match ktFloat "\v[-+]?[0-9]*([eE][-+]?[0-9]+|\.[0-9]+([eE][-+]?[0-9]+)?)[Ff]?"
 
+syn match ktEscapedName "\v`.*`"
+
 syn match ktExclExcl "!!"
 syn match ktArrow "->"
 
