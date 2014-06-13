@@ -1,11 +1,13 @@
 " Vim syntax file
 " Language: Kotlin
 " Maintainer: Alexander Udalov
-" Latest Revision: 7 May 2013
+" Latest Revision: 13 June 2014
 
 if exists("b:current_syntax")
-  finish
+    finish
 endif
+
+let b:current_syntax = "kotlin"
 
 syn keyword ktStatement break continue return
 syn keyword ktConditional if else when
