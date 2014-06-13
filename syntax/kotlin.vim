@@ -27,12 +27,17 @@ syn keyword ktBoolean true false
 syn keyword ktConstant null
 
 syn keyword ktTodo contained TODO FIXME XXX
+" TODO: nested comments
 syn match ktLineComment "//.*" contains=ktTodo,@Spell
 syn region ktComment start="/\*"  end="\*/" contains=ktTodo,@Spell
 
-syn region ktString start='"' skip='\\"' end='"'
-syn region ktString start='"""' end='"""'
+syn region ktString start='"' skip='\\"' end='"' contains=ktSimpleInterpolation,ktComplexInterpolation
+syn region ktString start='"""' end='"""' contains=ktSimpleInterpolation,ktComplexInterpolation
 syn match ktCharacter "'.'"
+
+syn match ktSimpleInterpolation "\v\$[a-zA-Z_][a-zA-Z_0-9]*" contained
+" TODO: highlight "${" and "}"
+syn region ktComplexInterpolation start="\v\$\{" end="\}" contains=ALL
 
 syn match ktNumber "\v<[0-9]+[LFf]?"
 syn match ktNumber "\v<0[Xx][0-9A-Fa-f]+L?"
@@ -69,6 +74,8 @@ hi link ktComment Comment
 
 hi link ktString String
 hi link ktCharacter Character
+
+hi link ktSimpleInterpolation Identifier
 
 hi link ktNumber Number
 hi link ktFloat Float
