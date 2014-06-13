@@ -34,7 +34,7 @@ syn region ktString start='"' skip='\\"' end='"'
 syn region ktString start='"""' end='"""'
 syn match ktCharacter "'.'"
 
-syn match ktNumber "\<[0-9]\+"
+syn match ktNumber "\<[0-9]\+[LFf]\?"
 syn match ktFloat "\<[0-9]\+\.[0-9]*"
 
 syn match ktExclExcl "!!"
