@@ -37,7 +37,7 @@ syn match ktCharacter "'.'"
 
 syn match ktSimpleInterpolation "\v\$[a-zA-Z_][a-zA-Z_0-9]*" contained
 " TODO: highlight "${" and "}"
-syn region ktComplexInterpolation start="\v\$\{" end="\}" contains=ALL
+syn region ktComplexInterpolation start="\v\$\{" end="\}" contains=ALLBUT,ktSimpleInterpolation
 
 syn match ktNumber "\v<[0-9]+[LFf]?"
 syn match ktNumber "\v<0[Xx][0-9A-Fa-f]+L?"
