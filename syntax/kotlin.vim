@@ -42,7 +42,7 @@ syn region ktComplexInterpolation start="\v\$\{" end="\}" contains=ALL
 syn match ktNumber "\v<[0-9]+[LFf]?"
 syn match ktNumber "\v<0[Xx][0-9A-Fa-f]+L?"
 syn match ktNumber "\v<0[Bb][0-9]+L?"
-syn match ktFloat "\v[-+]?[0-9]*([eE][-+]?[0-9]+|\.[0-9]+([eE][-+]?[0-9]+)?)[Ff]?"
+syn match ktFloat "\v<[0-9]*([0-9][eE][-+]?[0-9]+|\.[0-9]+([eE][-+]?[0-9]+)?)[Ff]?"
 
 syn match ktEscapedName "\v`.*`"
 
