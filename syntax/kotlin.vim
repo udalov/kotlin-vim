@@ -32,13 +32,16 @@ syn region ktComment start="/\*"  end="\*/" contains=ktComment,ktTodo,@Spell
 
 syn region ktString start='"' skip='\\"' end='"' contains=ktSimpleInterpolation,ktComplexInterpolation
 syn region ktString start='"""' end='"""' contains=ktSimpleInterpolation,ktComplexInterpolation
+
+" TODO: escape sequences
 syn match ktCharacter "'.'"
 
 syn match ktLabel "\v\@[a-zA-Z_][a-zA-Z_0-9]*"
 
 syn match ktSimpleInterpolation "\v\$[a-zA-Z_][a-zA-Z_0-9]*" contained
-" TODO: highlight "${" and "}"
-syn region ktComplexInterpolation start="\v\$\{" end="\}" contains=ALLBUT,ktSimpleInterpolation
+syn match ktComplexInterpolationBrace "\v\$\{" containedin=ktComplexInterpolation
+syn match ktComplexInterpolationBrace "\v\}" containedin=ktComplexInterpolation
+syn region ktComplexInterpolation start="\v\$\{" end="\v\}" contains=ALLBUT,ktSimpleInterpolation
 
 syn match ktNumber "\v<[0-9]+[LFf]?"
 syn match ktNumber "\v<0[Xx][0-9A-Fa-f]+L?"
@@ -79,6 +82,7 @@ hi link ktCharacter Character
 hi link ktLabel Identifier
 
 hi link ktSimpleInterpolation Identifier
+hi link ktComplexInterpolationBrace Identifier
 
 hi link ktNumber Number
 hi link ktFloat Float
