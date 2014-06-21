@@ -27,9 +27,8 @@ syn keyword ktBoolean true false
 syn keyword ktConstant null
 
 syn keyword ktTodo contained TODO FIXME XXX
-" TODO: nested comments
-syn match ktLineComment "//.*" contains=ktTodo,@Spell
-syn region ktComment start="/\*"  end="\*/" contains=ktTodo,@Spell
+syn match ktLineComment "//.*$" contains=ktTodo,@Spell
+syn region ktComment start="/\*"  end="\*/" contains=ktComment,ktTodo,@Spell
 
 syn region ktString start='"' skip='\\"' end='"' contains=ktSimpleInterpolation,ktComplexInterpolation
 syn region ktString start='"""' end='"""' contains=ktSimpleInterpolation,ktComplexInterpolation
