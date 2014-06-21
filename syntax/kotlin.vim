@@ -1,7 +1,7 @@
 " Vim syntax file
 " Language: Kotlin
 " Maintainer: Alexander Udalov
-" Latest Revision: 13 June 2014
+" Latest Revision: 21 June 2014
 
 if exists("b:current_syntax")
     finish
@@ -33,6 +33,8 @@ syn region ktComment start="/\*"  end="\*/" contains=ktComment,ktTodo,@Spell
 syn region ktString start='"' skip='\\"' end='"' contains=ktSimpleInterpolation,ktComplexInterpolation
 syn region ktString start='"""' end='"""' contains=ktSimpleInterpolation,ktComplexInterpolation
 syn match ktCharacter "'.'"
+
+syn match ktLabel "\v\@[a-zA-Z_][a-zA-Z_0-9]*"
 
 syn match ktSimpleInterpolation "\v\$[a-zA-Z_][a-zA-Z_0-9]*" contained
 " TODO: highlight "${" and "}"
@@ -73,6 +75,8 @@ hi link ktComment Comment
 
 hi link ktString String
 hi link ktCharacter Character
+
+hi link ktLabel Identifier
 
 hi link ktSimpleInterpolation Identifier
 
