@@ -39,8 +39,8 @@ syn match ktCharacter "'.'"
 syn match ktLabel "\v\@[a-zA-Z_][a-zA-Z_0-9]*"
 
 syn match ktSimpleInterpolation "\v\$[a-zA-Z_][a-zA-Z_0-9]*" contained
-syn match ktComplexInterpolationBrace "\v\$\{" containedin=ktComplexInterpolation
-syn match ktComplexInterpolationBrace "\v\}" containedin=ktComplexInterpolation
+syn match ktComplexInterpolationBrace "\v\$\{" contained containedin=ktComplexInterpolation
+syn match ktComplexInterpolationBrace "\v\}" contained containedin=ktComplexInterpolation
 syn region ktComplexInterpolation start="\v\$\{" end="\v\}" contains=ALLBUT,ktSimpleInterpolation
 
 syn match ktNumber "\v<[0-9]+[LFf]?"
