@@ -1,7 +1,7 @@
 " Vim syntax file
 " Language: Kotlin
 " Maintainer: Alexander Udalov
-" Latest Revision: 21 June 2014
+" Latest Revision: 6 July 2014
 
 if exists("b:current_syntax")
     finish
@@ -39,9 +39,7 @@ syn match ktCharacter "'.'"
 syn match ktLabel "\v\@[a-zA-Z_][a-zA-Z_0-9]*"
 
 syn match ktSimpleInterpolation "\v\$[a-zA-Z_][a-zA-Z_0-9]*" contained
-syn match ktComplexInterpolationBrace "\v\$\{" contained containedin=ktComplexInterpolation
-syn match ktComplexInterpolationBrace "\v\}" contained containedin=ktComplexInterpolation
-syn region ktComplexInterpolation start="\v\$\{" end="\v\}" contains=ALLBUT,ktSimpleInterpolation
+syn region ktComplexInterpolation matchgroup=ktComplexInterpolationBrace start="\v\$\{" end="\v\}" contains=ALLBUT,ktSimpleInterpolation
 
 syn match ktNumber "\v<[0-9]+[LFf]?"
 syn match ktNumber "\v<0[Xx][0-9A-Fa-f]+L?"
