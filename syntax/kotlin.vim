@@ -38,15 +38,15 @@ syn match ktCharacter "\v'[^']*'" contains=ktSpecialChar,ktSpecialCharError
 syn match ktCharacter "\v'\\''" contains=ktSpecialChar
 syn match ktCharacter "\v'[^\\]'"
 
-syn match ktLabel "\v\@[a-zA-Z_][a-zA-Z_0-9]*"
+syn match ktLabel "\v\@\h\w*"
 
-syn match ktSimpleInterpolation "\v\$[a-zA-Z_][a-zA-Z_0-9]*" contained
+syn match ktSimpleInterpolation "\v\$\h\w*" contained
 syn region ktComplexInterpolation matchgroup=ktComplexInterpolationBrace start="\v\$\{" end="\v\}" contains=ALLBUT,ktSimpleInterpolation
 
-syn match ktNumber "\v<[0-9]+[LFf]?"
-syn match ktNumber "\v<0[Xx][0-9A-Fa-f]+L?"
-syn match ktNumber "\v<0[Bb][0-9]+L?"
-syn match ktFloat "\v<[0-9]*([0-9][eE][-+]?[0-9]+|\.[0-9]+([eE][-+]?[0-9]+)?)[Ff]?"
+syn match ktNumber "\v<\d+[LFf]?"
+syn match ktNumber "\v<0[Xx]\x+L?"
+syn match ktNumber "\v<0[Bb]\d+L?"
+syn match ktFloat "\v<\d*(\d[eE][-+]?\d+|\.\d+([eE][-+]?\d+)?)[Ff]?"
 
 syn match ktEscapedName "\v`.*`"
 
