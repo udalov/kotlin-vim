@@ -30,11 +30,13 @@ syn keyword ktTodo contained TODO FIXME XXX
 syn match ktLineComment "//.*$" contains=ktTodo,@Spell
 syn region ktComment start="/\*"  end="\*/" contains=ktComment,ktTodo,@Spell
 
-syn region ktString start='"' skip='\\"' end='"' contains=ktSimpleInterpolation,ktComplexInterpolation
-syn region ktString start='"""' end='"""' contains=ktSimpleInterpolation,ktComplexInterpolation
-
-" TODO: escape sequences
-syn match ktCharacter "'.'"
+syn match ktSpecialCharError "\v\\." contained
+syn match ktSpecialChar "\v\\([tbnr'"$\\]|u\x{4})" contained
+syn region ktString start='"' skip='\\"' end='"' contains=ktSimpleInterpolation,ktComplexInterpolation,ktSpecialChar,ktSpecialCharError
+syn region ktString start='"""' end='"""' contains=ktSimpleInterpolation,ktComplexInterpolation,ktSpecialChar,ktSpecialCharError
+syn match ktCharacter "\v'[^']*'" contains=ktSpecialChar,ktSpecialCharError
+syn match ktCharacter "\v'\\''" contains=ktSpecialChar
+syn match ktCharacter "\v'[^\\]'"
 
 syn match ktLabel "\v\@[a-zA-Z_][a-zA-Z_0-9]*"
 
@@ -74,6 +76,8 @@ hi link ktTodo Todo
 hi link ktLineComment Comment
 hi link ktComment Comment
 
+hi link ktSpecialChar SpecialChar
+hi link ktSpecialCharError Error
 hi link ktString String
 hi link ktCharacter Character
 
