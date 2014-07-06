@@ -19,12 +19,14 @@ syn keyword ktException try catch finally throw
 syn keyword ktInclude import package
 
 syn keyword ktType Any Boolean Byte Char Double Float Int Long Nothing Short Unit
-syn keyword ktModifier annotation data enum inner internal private protected public abstract final open override vararg
+syn keyword ktModifier annotation enum inner internal private protected public abstract final open override vararg
 syn keyword ktStructure class fun object trait val var
 syn keyword ktTypedef type
 
 syn keyword ktBoolean true false
 syn keyword ktConstant null
+
+syn keyword ktModifier data inline volatile
 
 syn keyword ktTodo contained TODO FIXME XXX
 syn match ktLineComment "//.*$" contains=ktTodo,@Spell
