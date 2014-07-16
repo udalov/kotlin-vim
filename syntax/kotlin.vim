@@ -1,7 +1,7 @@
 " Vim syntax file
 " Language: Kotlin
 " Maintainer: Alexander Udalov
-" Latest Revision: 6 July 2014
+" Latest Revision: 15 July 2014
 
 if exists("b:current_syntax")
     finish
@@ -28,9 +28,9 @@ syn keyword ktConstant null
 
 syn keyword ktModifier data inline volatile
 
-syn keyword ktTodo contained TODO FIXME XXX
+syn keyword ktTodo TODO FIXME XXX contained
 syn match ktLineComment "//.*$" contains=ktTodo,@Spell
-syn region ktComment start="/\*"  end="\*/" contains=ktComment,ktTodo,@Spell
+syn region ktComment matchgroup=ktCommentMatchGroup start="/\*" end="\*/" contains=ktComment,ktTodo,@Spell
 
 syn match ktSpecialCharError "\v\\." contained
 syn match ktSpecialChar "\v\\([tbnr'"$\\]|u\x{4})" contained
@@ -77,6 +77,7 @@ hi link ktConstant Constant
 hi link ktTodo Todo
 hi link ktLineComment Comment
 hi link ktComment Comment
+hi link ktCommentMatchGroup Comment
 
 hi link ktSpecialChar SpecialChar
 hi link ktSpecialCharError Error
