@@ -21,7 +21,7 @@ syn keyword ktInclude import package
 syn keyword ktType Any Boolean Byte Char Double Float Int Long Nothing Short Unit
 syn keyword ktModifier annotation enum inner internal private protected public abstract final open override vararg
 syn keyword ktStructure class fun object trait val var
-syn keyword ktTypedef type
+syn keyword ktTypedef typealias
 
 syn keyword ktBoolean true false
 syn keyword ktConstant null
