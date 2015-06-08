@@ -1,7 +1,7 @@
 " Vim syntax file
 " Language: Kotlin
 " Maintainer: Alexander Udalov
-" Latest Revision: 18 March 2015
+" Latest Revision: 8 June 2015
 
 if exists("b:current_syntax")
     finish
@@ -19,14 +19,14 @@ syn keyword ktException try catch finally throw
 syn keyword ktInclude import package
 
 syn keyword ktType Any Boolean Byte Char Double Float Int Long Nothing Short Unit
-syn keyword ktModifier annotation companion enum inner internal private protected public abstract final open override vararg reified dynamic
-syn keyword ktStructure class object trait fun val var constructor init
+syn keyword ktModifier annotation companion enum inner internal private protected public abstract final open override vararg dynamic
+syn keyword ktStructure class object interface trait fun val var constructor init
 syn keyword ktTypedef typealias
 
 syn keyword ktBoolean true false
 syn keyword ktConstant null
 
-syn keyword ktModifier data inline volatile
+syn keyword ktModifier data inline reified native synchronized transient volatile
 
 syn keyword ktTodo TODO FIXME XXX contained
 syn match ktLineComment "//.*$" contains=ktTodo,@Spell
@@ -40,7 +40,8 @@ syn match ktCharacter "\v'[^']*'" contains=ktSpecialChar,ktSpecialCharError
 syn match ktCharacter "\v'\\''" contains=ktSpecialChar
 syn match ktCharacter "\v'[^\\]'"
 
-syn match ktLabel "\v\@\h\w*"
+syn match ktAnnotation "\v\@\h\w*"
+syn match ktLabel "\v\w+\@"
 
 syn match ktSimpleInterpolation "\v\$\h\w*" contained
 syn region ktComplexInterpolation matchgroup=ktComplexInterpolationBrace start="\v\$\{" end="\v\}" contains=ALLBUT,ktSimpleInterpolation
@@ -84,6 +85,7 @@ hi link ktSpecialCharError Error
 hi link ktString String
 hi link ktCharacter Character
 
+hi link ktAnnotation Identifier
 hi link ktLabel Identifier
 
 hi link ktSimpleInterpolation Identifier
