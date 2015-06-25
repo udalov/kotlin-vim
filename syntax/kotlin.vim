@@ -40,7 +40,7 @@ syn match ktCharacter "\v'[^']*'" contains=ktSpecialChar,ktSpecialCharError
 syn match ktCharacter "\v'\\''" contains=ktSpecialChar
 syn match ktCharacter "\v'[^\\]'"
 
-syn match ktAnnotation "\v\@\h\w*"
+syn match ktAnnotation "\v\@\h[[:alnum:]_.]*"
 syn match ktLabel "\v\w+\@"
 
 syn match ktSimpleInterpolation "\v\$\h\w*" contained
