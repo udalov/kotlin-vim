@@ -1,7 +1,7 @@
 " Vim syntax file
 " Language: Kotlin
 " Maintainer: Alexander Udalov
-" Latest Revision: 8 June 2015
+" Latest Revision: 27 June 2015
 
 if exists("b:current_syntax")
     finish
@@ -40,7 +40,7 @@ syn match ktCharacter "\v'[^']*'" contains=ktSpecialChar,ktSpecialCharError
 syn match ktCharacter "\v'\\''" contains=ktSpecialChar
 syn match ktCharacter "\v'[^\\]'"
 
-syn match ktAnnotation "\v\@\h[[:alnum:]_.]*"
+syn match ktAnnotation "\v\@\h[[:alnum:]_.]*(:[[:alnum:]_.]*)?"
 syn match ktLabel "\v\w+\@"
 
 syn match ktSimpleInterpolation "\v\$\h\w*" contained
