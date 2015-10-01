@@ -1,7 +1,7 @@
 " Vim syntax file
 " Language: Kotlin
 " Maintainer: Alexander Udalov
-" Latest Revision: 17 September 2015
+" Latest Revision: 1 October 2015
 
 if exists("b:current_syntax")
     finish
@@ -20,13 +20,13 @@ syn keyword ktInclude import package
 
 syn keyword ktType Any Boolean Byte Char Double Float Int Long Nothing Short Unit
 syn keyword ktModifier annotation companion enum inner internal private protected public abstract final open override sealed vararg dynamic
-syn keyword ktStructure class object interface trait fun val var constructor init
+syn keyword ktStructure class object interface fun val var constructor init
 syn keyword ktTypedef typealias
 
 syn keyword ktBoolean true false
 syn keyword ktConstant null
 
-syn keyword ktModifier data tailrec lateinit reified external inline noinline crossinline
+syn keyword ktModifier data tailrec lateinit reified external inline noinline crossinline const operator infix
 
 syn keyword ktTodo TODO FIXME XXX contained
 syn match ktLineComment "//.*$" contains=ktTodo,@Spell
