@@ -1,7 +1,7 @@
 " Vim syntax file
 " Language: Kotlin
 " Maintainer: Alexander Udalov
-" Latest Revision: 23 December 2015
+" Latest Revision: 24 February 2016
 
 if exists("b:current_syntax")
     finish
@@ -30,7 +30,8 @@ syn keyword ktConstant null
 syn keyword ktModifier data tailrec lateinit reified external inline noinline crossinline const operator infix
 
 syn keyword ktTodo TODO FIXME XXX contained
-syn match ktLineComment "//.*$" contains=ktTodo,@Spell
+syn match ktShebang "\v^#!.*$"
+syn match ktLineComment "\v//.*$" contains=ktTodo,@Spell
 syn region ktComment matchgroup=ktCommentMatchGroup start="/\*" end="\*/" contains=ktComment,ktTodo,@Spell
 
 syn match ktSpecialCharError "\v\\." contained
@@ -79,6 +80,7 @@ hi link ktBoolean Boolean
 hi link ktConstant Constant
 
 hi link ktTodo Todo
+hi link ktShebang Comment
 hi link ktLineComment Comment
 hi link ktComment Comment
 hi link ktCommentMatchGroup Comment
