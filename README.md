@@ -8,7 +8,7 @@ Add `Plugin 'udalov/kotlin-vim'` to your `~/.vimrc` and run `PluginInstall`.
 
 ### [Pathogen](https://github.com/tpope/vim-pathogen)
 
-    $ git clone https://github.com/udalov/kotlin-vim ~/.vim/bundle/
+    $ git clone https://github.com/udalov/kotlin-vim ~/.vim/bundle/kotlin-vim
 
 ### Manual
 
