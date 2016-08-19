@@ -25,8 +25,8 @@ if !exists("g:syntastic_kotlin_kotlinc_config_file")
 	let g:syntastic_kotlin_kotlinc_config_file = ".syntastic_kotlinc_config"
 endif
 
-if !exists("g:syntastic_kotlinc_classpath")
-	let g:syntastic_kotlinc_classpath = ""
+if !exists("g:syntastic_kotlin_kotlinc_classpath")
+	let g:syntastic_kotlin_kotlinc_classpath = ""
 endif
 
 function! SyntaxCheckers_kotlin_kotlinc_IsAvailable() dict
@@ -42,8 +42,8 @@ function! SyntaxCheckers_kotlin_kotlinc_GetLocList() dict
 		endif
 	endif
 
-	if g:syntastic_kotlinc_classpath !=# ""
-		let kotlinc_opts .= " -cp " . g:syntastic_kotlinc_classpath
+	if g:syntastic_kotlin_kotlinc_classpath !=# ""
+		let kotlinc_opts .= " -cp " . g:syntastic_kotlin_kotlinc_classpath
 	endif
 
 
