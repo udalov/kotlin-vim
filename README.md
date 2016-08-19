@@ -1,14 +1,15 @@
 # kotlin-vim
+This is a fork of  [udalov/kotlin-vim](https://github.com/udalov/kotlin-vim) with a syntastic checker.
 
 ## Installation
 
 ### [Vundle](https://github.com/gmarik/Vundle.vim)
 
-Add `Plugin 'udalov/kotlin-vim'` to your `~/.vimrc` and run `PluginInstall`.
+Add `Plugin 'francis36012/kotlin-vim'` to your `~/.vimrc` and run `PluginInstall`.
 
 ### [Pathogen](https://github.com/tpope/vim-pathogen)
 
-    $ git clone https://github.com/udalov/kotlin-vim ~/.vim/bundle/kotlin-vim
+    $ git clone https://github.com/francis36012/kotlin-vim ~/.vim/bundle/kotlin-vim
 
 ### Manual
 
