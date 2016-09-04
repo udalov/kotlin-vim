@@ -29,6 +29,10 @@ if !exists("g:syntastic_kotlin_kotlinc_classpath")
 	let g:syntastic_kotlin_kotlinc_classpath = ""
 endif
 
+if !exists("g:syntastic_kotlin_kotlinc_sourcepath")
+	let g:syntastic_kotlin_kotlinc_sourcepath = ""
+endif
+
 function! SyntaxCheckers_kotlin_kotlinc_IsAvailable() dict
 	return executable(self.getExec()) && executable("kotlinc")
 endfunction
@@ -46,6 +50,11 @@ function! SyntaxCheckers_kotlin_kotlinc_GetLocList() dict
 		let kotlinc_opts .= " -cp " . g:syntastic_kotlin_kotlinc_classpath
 	endif
 
+	if g:syntastic_kotlin_kotlinc_sourcepath !=# ""
+		let fname = expand(g:syntastic_kotlin_kotlinc_sourcepath, 1) . " "
+	endif
+	let fname .=  shellescape(expand("%", 1))
+
 
 	let output_dir = ""
 	if g:syntastic_kotlin_kotlinc_delete_output
@@ -56,7 +65,7 @@ function! SyntaxCheckers_kotlin_kotlinc_GetLocList() dict
 	let makeprg = self.makeprgBuild({
 		\ "exe": "kotlinc",
 		\ "args": kotlinc_opts,
-		\ "fname": shellescape(expand("%", 1)) })
+		\ "fname": fname })
 
 	let errorformat =
 		\ "%E%f:%l:%c: error: %m," .
@@ -73,7 +82,17 @@ function! SyntaxCheckers_kotlin_kotlinc_GetLocList() dict
 	if output_dir !=# ''
 		call syntastic#util#rmrf(output_dir)
 	endif
-	return errors
+
+	let currbufnr = bufnr("%")
+	let relevant_errors = []
+
+	for error in errors
+		if has_key(error, "bufnr") && (error.bufnr == currbufnr)
+			let relevant_errors = add(relevant_errors, error)
+		endif
+	endfor
+
+	return relevant_errors
 endfunction
 
 function! s:PathSeparator()
