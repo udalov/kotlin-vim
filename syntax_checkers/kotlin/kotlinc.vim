@@ -50,8 +50,9 @@ function! SyntaxCheckers_kotlin_kotlinc_GetLocList() dict
 		let kotlinc_opts .= " -cp " . g:syntastic_kotlin_kotlinc_classpath
 	endif
 
+	let fname = ""
 	if g:syntastic_kotlin_kotlinc_sourcepath !=# ""
-		let fname = expand(g:syntastic_kotlin_kotlinc_sourcepath, 1) . " "
+		let fname .= expand(g:syntastic_kotlin_kotlinc_sourcepath, 1) . " "
 	endif
 	let fname .=  shellescape(expand("%", 1))
 
