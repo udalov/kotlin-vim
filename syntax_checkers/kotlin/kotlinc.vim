@@ -33,10 +33,6 @@ if !exists("g:syntastic_kotlin_kotlinc_sourcepath")
 	let g:syntastic_kotlin_kotlinc_sourcepath = ""
 endif
 
-function! SyntaxCheckers_kotlin_kotlinc_IsAvailable() dict
-	return executable(self.getExec())
-endfunction
-
 function! SyntaxCheckers_kotlin_kotlinc_GetLocList() dict
 	let kotlinc_opts = g:syntastic_kotlin_kotlinc_options
 
