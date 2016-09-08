@@ -1,4 +1,4 @@
-" Vim synstastic plugin
+" Vim syntastic plugin
 " Language: Kotlin
 
 if exists('g:loaded_syntastic_kotlin_kotlinc_checker')
@@ -34,7 +34,7 @@ if !exists("g:syntastic_kotlin_kotlinc_sourcepath")
 endif
 
 function! SyntaxCheckers_kotlin_kotlinc_IsAvailable() dict
-	return executable(self.getExec()) && executable("kotlinc")
+	return executable(self.getExec())
 endfunction
 
 function! SyntaxCheckers_kotlin_kotlinc_GetLocList() dict
@@ -70,7 +70,10 @@ function! SyntaxCheckers_kotlin_kotlinc_GetLocList() dict
 
 	let errorformat =
 		\ "%E%f:%l:%c: error: %m," .
-		\ "%W%f:%l:%c: warning: %m,"
+		\ "%W%f:%l:%c: warning: %m," .
+		\ "%Eerror: %m," .
+		\ "%Wwarning: %m," .
+		\ "%Iinfo: %m,"
 
 	if output_dir !=# ''
 		silent! call mkdir(output_dir, 'p')
@@ -88,20 +91,13 @@ function! SyntaxCheckers_kotlin_kotlinc_GetLocList() dict
 	let relevant_errors = []
 
 	for error in errors
-		if has_key(error, "bufnr") && (error.bufnr == currbufnr)
+		" Only get messages bounded to this buffer or are 'bufferless'
+		if (error.bufnr == currbufnr) || (error.bufnr == 0)
 			let relevant_errors = add(relevant_errors, error)
 		endif
 	endfor
 
 	return relevant_errors
-endfunction
-
-function! s:PathSeparator()
-	if has("win32") || has("win32unix")
-		return ";"
-	else
-		return ":"
-	endif
 endfunction
 
 call g:SyntasticRegistry.CreateAndRegisterChecker({
