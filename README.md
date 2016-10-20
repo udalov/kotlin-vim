@@ -10,6 +10,10 @@ Add `Plugin 'udalov/kotlin-vim'` to your `~/.vimrc` and run `PluginInstall`.
 
     $ git clone https://github.com/udalov/kotlin-vim ~/.vim/bundle/kotlin-vim
 
+### [Plug](https://github.com/junegunn/vim-plug)
+
+Add `Plug 'udalov/javap-vim'` to your `~/.vimrc` and run `PlugInstall`.
+
 ### Manual
 
 0. `mkdir -p ~/.vim/{syntax,indent,ftdetect}`
