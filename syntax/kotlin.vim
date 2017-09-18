@@ -1,7 +1,7 @@
 " Vim syntax file
 " Language: Kotlin
 " Maintainer: Alexander Udalov
-" Latest Revision: 29 December 2016
+" Latest Revision: 18 September 2017
 
 if exists("b:current_syntax")
     finish
@@ -19,7 +19,7 @@ syn keyword ktException try catch finally throw
 syn keyword ktInclude import package
 
 syn keyword ktType Any Boolean Byte Char Double Float Int Long Nothing Short Unit
-syn keyword ktModifier annotation companion enum inner internal private protected public abstract final open override sealed vararg dynamic header impl
+syn keyword ktModifier annotation companion enum inner internal private protected public abstract final open override sealed vararg dynamic header impl expect actual
 syn keyword ktStructure class object interface typealias fun val var constructor init
 
 syn keyword ktReservedKeyword typeof
