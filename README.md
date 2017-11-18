@@ -10,6 +10,15 @@ Add `Plugin 'udalov/kotlin-vim'` to your `~/.vimrc` and run `PluginInstall`.
 
     $ git clone https://github.com/udalov/kotlin-vim ~/.vim/bundle/kotlin-vim
 
+### [Vim8 Native](https://shapeshed.com/vim-packages/)
+
+You can also use Vim 8 built-in package manager:
+
+`mkdir ~/.vim/pack/default/start`
+`cd ~/.vim/pack/default/start`
+`git clone https://github.com/udalov/kotlin-vim.git`
+
+
 ### Manual
 
 0. `mkdir -p ~/.vim/{syntax,indent,ftdetect}`
