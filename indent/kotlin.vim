@@ -3,7 +3,7 @@
 " Maintainer: Alexander Udalov
 " Latest Revision: 15 July 2017
 
-if exists("b:did_indent")
+if exists('b:did_indent')
     finish
 endif
 let b:did_indent = 1
