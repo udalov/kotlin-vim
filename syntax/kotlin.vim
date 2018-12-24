@@ -33,6 +33,11 @@ syn keyword ktTodo TODO FIXME XXX contained
 syn match ktShebang "\v^#!.*$"
 syn match ktLineComment "\v//.*$" contains=ktTodo,@Spell
 syn region ktComment matchgroup=ktCommentMatchGroup start="/\*" end="\*/" contains=ktComment,ktTodo,@Spell
+syn region ktDocComment start="/\*\*" end="\*/" contains=ktDocTag,ktTodo,@Spell
+syn match ktDocTag contained "@\(author\|constructor\|receiver\|return\|sample\|see\|since\|suppress\)\>"
+syn match ktDocTag contained "@\(exception\|param\|property\|throws\)\(\s\+\|\s*\[\)\S\+" contains=ktDocTagParam
+syn match ktDocTagParam contained "\(\s\|\[\)\S\+"
+syn match ktComment "/\*\*/"
 
 syn match ktSpecialCharError "\v\\." contained
 syn match ktSpecialChar "\v\\([tbnr'"$\\]|u\x{4})" contained
@@ -84,6 +89,9 @@ hi link ktShebang Comment
 hi link ktLineComment Comment
 hi link ktComment Comment
 hi link ktCommentMatchGroup Comment
+hi link ktDocComment Comment
+hi link ktDocTag Special
+hi link ktDocTagParam Identifier
 
 hi link ktSpecialChar SpecialChar
 hi link ktSpecialCharError Error
