@@ -55,9 +55,9 @@ syn match ktLabel "\v\w+\@"
 syn match ktSimpleInterpolation "\v\$\h\w*" contained
 syn region ktComplexInterpolation matchgroup=ktComplexInterpolationBrace start="\v\$\{" end="\v\}" contains=ALLBUT,ktSimpleInterpolation,ktTodo,ktSpecialCharError,ktSpecialChar,ktDocTag,ktDocTagParam
 
-syn match ktNumber "\v<\d+[_[:digit:]]*[LFf]?"
-syn match ktNumber "\v<0[Xx]\x+[_[:xdigit:]]*L?"
-syn match ktNumber "\v<0[Bb][01]+[_01]*L?"
+syn match ktNumber "\v<\d+[_[:digit:]]*(uL?|UL?|[LFf])?"
+syn match ktNumber "\v<0[Xx]\x+[_[:xdigit:]]*(uL?|UL?|L)?"
+syn match ktNumber "\v<0[Bb][01]+[_01]*(uL?|UL?|L)?"
 syn match ktFloat "\v<\d*(\d[eE][-+]?\d+|\.\d+([eE][-+]?\d+)?)[Ff]?"
 
 syn match ktEscapedName "\v`.*`"
