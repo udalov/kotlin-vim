@@ -52,7 +52,7 @@ syn match ktAnnotation "\v(\w)@<!\@[[:alnum:]_.]*(:[[:alnum:]_.]*)?"
 syn match ktLabel "\v\w+\@"
 
 syn match ktSimpleInterpolation "\v\$\h\w*" contained
-syn region ktComplexInterpolation matchgroup=ktComplexInterpolationBrace start="\v\$\{" end="\v\}" contains=ALLBUT,ktSimpleInterpolation,ktTodo,ktSpecialCharError,ktSpecialChar
+syn region ktComplexInterpolation matchgroup=ktComplexInterpolationBrace start="\v\$\{" end="\v\}" contains=ALLBUT,ktSimpleInterpolation,ktTodo,ktSpecialCharError,ktSpecialChar,ktDocTag,ktDocTagParam
 
 syn match ktNumber "\v<\d+[_[:digit:]]*[LFf]?"
 syn match ktNumber "\v<0[Xx]\x+[_[:xdigit:]]*L?"
