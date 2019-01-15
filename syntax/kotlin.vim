@@ -1,13 +1,13 @@
 " Vim syntax file
 " Language: Kotlin
 " Maintainer: Alexander Udalov
-" Latest Revision: 23 November 2017
+" Latest Revision: 15 January 2019
 
 if exists('b:current_syntax')
     finish
 endif
 
-syn match ktOperator "\([-!%&\*\+./<=>\?\\^|:]\)"
+syn match ktOperator "\v\?:|::|[-!%&*+/?|]"
 
 syn keyword ktStatement break continue return
 syn keyword ktConditional if else when
