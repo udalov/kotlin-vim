@@ -20,7 +20,7 @@ syn keyword ktStatement break continue return
 syn keyword ktConditional if else when
 syn keyword ktRepeat do for while
 syn keyword ktOperator as in is by to
-syn keyword ktKeyword get set out super this where lazy requires contract
+syn keyword ktKeyword get set out super this where lazy require contract
 syn keyword ktException try catch finally throw
 
 syn keyword ktInclude import package
