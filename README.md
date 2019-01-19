@@ -10,6 +10,10 @@ Add `Plugin 'udalov/kotlin-vim'` to your `~/.vimrc` and run `PluginInstall`.
 
     $ git clone https://github.com/udalov/kotlin-vim ~/.vim/bundle/kotlin-vim
 
+### [vim-plug](https://github.com/junegunn/vim-plug)
+
+Add `Plug 'udalov/kotlin-vim'` to your `~/.vimrc` and run `PluginInstall`.
+
 ### Manual
 
 0. `mkdir -p ~/.vim/{syntax,indent,ftdetect,ftplugin}`
@@ -19,5 +23,10 @@ Add `Plugin 'udalov/kotlin-vim'` to your `~/.vimrc` and run `PluginInstall`.
 4. `cp ftplugin/kotlin.vim ~/.vim/ftplugin/kotlin.vim`
 5. If you use [Syntastic](https://github.com/scrooloose/syntastic): `cp -r syntax_checkers/kotlin ~/.vim/syntax_checkers/`
 6. Restart Vim
+
+### Settings
+
+* `g:kotlin_collections` - add standard Kotlin collections to the `Type` group (List, Map, Set etc.), default is 0 (off), set to 1 to enable
+* `g:kotlin_more_operators` - add much more symbols to the `Operator` group ([{(=:,.)}] etc.), default is 0 (off), set to 1 to enable
 
 ##### Enjoy!
