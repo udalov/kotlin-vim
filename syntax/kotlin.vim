@@ -18,7 +18,7 @@ syn keyword ktException try catch finally throw
 
 syn keyword ktInclude import package
 
-syn keyword ktType Any Boolean Byte Char Double Float Int Long Nothing Short Unit
+syn keyword ktType Any Array Boolean Byte Char Double Float Int Long Nothing Short String UByte UInt ULong UShort Unit
 syn keyword ktModifier annotation companion enum inner internal private protected public abstract final open override sealed vararg dynamic expect actual
 syn keyword ktStructure class object interface typealias fun val var constructor init
 
