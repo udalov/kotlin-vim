@@ -34,7 +34,7 @@ syn match ktShebang "\v^#!.*$"
 syn match ktLineComment "\v//.*$" contains=ktTodo,@Spell
 syn region ktComment matchgroup=ktCommentMatchGroup start="/\*" end="\*/" contains=ktComment,ktTodo,@Spell
 
-syn region ktDocComment start="/\*\*" end="\*/" contains=ktDocTag,ktTodo,@Spell
+syn region ktDocComment start="/\*\*" end="\*/" contains=ktDocTag,ktTodo,@Spell fold
 syn match ktDocTag "\v\@(author|constructor|receiver|return|since|suppress)>" contained
 syn match ktDocTag "\v\@(exception|param|property|throws|see|sample)>\s*\S+" contains=ktDocTagParam contained
 syn match ktDocTagParam "\v(\s|\[)\S+" contained
@@ -65,7 +65,7 @@ syn match ktEscapedName "\v`.*`"
 syn match ktExclExcl "!!"
 syn match ktArrow "->"
 
-
+syn region ktBlock start="{" end="}" transparent fold
 
 hi link ktStatement Statement
 hi link ktConditional Conditional
