@@ -2,6 +2,16 @@
 
 ## Installation
 
+### Vim 8 and later
+
+Vim since version 8 has built-in package support
+
+    $ mkdir -p ~/.vim/pack/kotlin-vim/start
+    $ cd ~/.vim/pack/kotlin-vim/start
+    $ git clone https://github.com/udalov/kotlin-vim.git
+
+Restart Vim
+
 ### [Vundle](https://github.com/gmarik/Vundle.vim)
 
 Add `Plugin 'udalov/kotlin-vim'` to your `~/.vimrc` and run `PluginInstall`.
@@ -10,7 +20,7 @@ Add `Plugin 'udalov/kotlin-vim'` to your `~/.vimrc` and run `PluginInstall`.
 
     $ git clone https://github.com/udalov/kotlin-vim ~/.vim/bundle/kotlin-vim
 
-### Manual
+### Manual, for older versions of Vim
 
 0. `mkdir -p ~/.vim/{syntax,indent,ftdetect,ftplugin}`
 1. `cp syntax/kotlin.vim ~/.vim/syntax/kotlin.vim`
