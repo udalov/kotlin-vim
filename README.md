@@ -2,15 +2,18 @@
 
 ## Installation
 
-### [Vundle](https://github.com/gmarik/Vundle.vim)
+If you use Vim 8 or later, the recommended way is using [Vim's built-in package manager](https://vimhelp.org/repeat.txt.html#packages):
 
-Add `Plugin 'udalov/kotlin-vim'` to your `~/.vimrc` and run `PluginInstall`.
+    git clone https://github.com/udalov/kotlin-vim.git ~/.vim/pack/plugins/start/kotlin-vim
 
-### [Pathogen](https://github.com/tpope/vim-pathogen)
+#### Other plugin managers:
 
-    $ git clone https://github.com/udalov/kotlin-vim ~/.vim/bundle/kotlin-vim
+* [Vundle](https://github.com/gmarik/Vundle.vim)
+    * add `Plugin 'udalov/kotlin-vim'` to your `~/.vimrc` and run `PluginInstall`.
+* [Pathogen](https://github.com/tpope/vim-pathogen)
+    * `git clone https://github.com/udalov/kotlin-vim ~/.vim/bundle/kotlin-vim`
 
-### Manual
+#### Manual (for older versions of Vim)
 
 0. `mkdir -p ~/.vim/{syntax,indent,ftdetect,ftplugin}`
 1. `cp syntax/kotlin.vim ~/.vim/syntax/kotlin.vim`
