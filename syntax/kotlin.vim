@@ -1,18 +1,16 @@
 " Vim syntax file
 " Language: Kotlin
 " Maintainer: Alexander Udalov
-" Latest Revision: 15 January 2019
+" Latest Revision: 26 May 2019
 
 if exists('b:current_syntax')
     finish
 endif
 
-syn match ktOperator "\v\?:|::|[-!%&*+/?|]"
-
 syn keyword ktStatement break continue return
 syn keyword ktConditional if else when
 syn keyword ktRepeat do for while
-syn keyword ktOperator as in is by
+syn keyword ktOperator in is by
 syn keyword ktKeyword get set out super this where
 syn keyword ktException try catch finally throw
 
@@ -28,6 +26,8 @@ syn keyword ktBoolean true false
 syn keyword ktConstant null
 
 syn keyword ktModifier data tailrec lateinit reified external inline noinline crossinline const operator infix suspend
+
+syn match ktOperator "\v\?:|::|\<\=? | \>\=?|[!=]\=\=?|<as>\??|[-!%&*+/|]"
 
 syn keyword ktTodo TODO FIXME XXX contained
 syn match ktShebang "\v^#!.*$"
