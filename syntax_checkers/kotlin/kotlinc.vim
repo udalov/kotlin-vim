@@ -9,27 +9,27 @@ let g:loaded_syntastic_kotlin_kotlinc_checker = 1
 let s:save_cpo = &cpo
 set cpo&vim
 
-if !exists("g:syntastic_kotlin_kotlinc_options")
+if !exists('g:syntastic_kotlin_kotlinc_options')
 	let g:syntastic_kotlin_kotlinc_options = ""
 endif
 
-if !exists("g:syntastic_kotlin_kotlinc_delete_output")
+if !exists('g:syntastic_kotlin_kotlinc_delete_output')
 	let g:syntastic_kotlin_kotlinc_delete_output = 1
 endif
 
-if !exists("g:syntastic_kotlin_kotlinc_config_file_enabled")
+if !exists('g:syntastic_kotlin_kotlinc_config_file_enabled')
 	let g:syntastic_kotlin_kotlinc_config_file_enabled = 0
 endif
 
-if !exists("g:syntastic_kotlin_kotlinc_config_file")
+if !exists('g:syntastic_kotlin_kotlinc_config_file')
 	let g:syntastic_kotlin_kotlinc_config_file = ".syntastic_kotlinc_config"
 endif
 
-if !exists("g:syntastic_kotlin_kotlinc_classpath")
+if !exists('g:syntastic_kotlin_kotlinc_classpath')
 	let g:syntastic_kotlin_kotlinc_classpath = ""
 endif
 
-if !exists("g:syntastic_kotlin_kotlinc_sourcepath")
+if !exists('g:syntastic_kotlin_kotlinc_sourcepath')
 	let g:syntastic_kotlin_kotlinc_sourcepath = ""
 endif
 
