@@ -1,7 +1,7 @@
 " Vim indent file
 " Language: Kotlin
 " Maintainer: Alexander Udalov
-" Latest Revision: 15 July 2017
+" Latest Revision: 26 May 2019
 
 if exists('b:did_indent')
     finish
@@ -41,24 +41,14 @@ function! GetKotlinIndent()
 
     let prev_open_paren = prev =~ '^.*(\s*$'
     let cur_close_paren = cur =~ '^\s*).*$'
-
-    if prev_open_paren && !cur_close_paren
-        return prev_indent + &shiftwidth
-    endif
-
-    if cur_close_paren && !prev_open_paren
-        return prev_indent - &shiftwidth
-    endif
-
-
     let prev_open_brace = prev =~ '^.*\({\|->\)\s*$'
     let cur_close_brace = cur =~ '^\s*}.*$'
 
-    if prev_open_brace && !cur_close_brace
+    if prev_open_paren && !cur_close_paren || prev_open_brace && !cur_close_brace
         return prev_indent + &shiftwidth
     endif
 
-    if cur_close_brace && !prev_open_brace
+    if cur_close_paren && !prev_open_paren || cur_close_brace && !prev_open_brace
         return prev_indent - &shiftwidth
     endif
 
