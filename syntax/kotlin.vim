@@ -16,7 +16,8 @@ syn keyword ktException try catch finally throw
 
 syn keyword ktInclude import package
 
-syn keyword ktType Any Boolean Byte Char Double Float Int Long Nothing Short Unit
+syn keyword ktType Any Boolean Byte Char Double Float Int Long Nothing Short Unit String Array Annotation BooleanArray ByteArray Comparable Comparator CharArray CharSequence DeprecationLevel DoubleArray Enum FloatArray Function IntArray KotlinVersion Lazy LazyThreadSafetyMode LongArray Number Pair Result ShortArray Synchronized Triple UByte UByteArray UInt UIntArray ULong ULongArray UShort UShortArray Volatile
+syn keyword ktExceptionType ArithmeticException ArrayIndexOutOfBoundsException AssertionError ClassCastException ConcurrentModificationException Error Exception IllegalArgumentException IllegalCharacterConversionException IllegalStateException IndexOutOfBoundsException NoSuchElementException NotImplementedError NoWhenBranchMatchedException NullPointerException NumberFormatException OutOfMemoryError RuntimeException Throwable UninitializedPropertyAccessException UnsupportedOperationException
 syn keyword ktModifier annotation companion enum inner internal private protected public abstract final open override sealed vararg dynamic expect actual
 syn keyword ktStructure class object interface typealias fun val var constructor init
 
@@ -76,6 +77,7 @@ hi def link ktReservedKeyword Error
 hi def link ktInclude Include
 
 hi def link ktType Type
+hi def link ktExceptionType Type
 hi def link ktModifier StorageClass
 hi def link ktStructure Structure
 hi def link ktTypedef Typedef
