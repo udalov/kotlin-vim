@@ -91,6 +91,16 @@ syn match ktEscapedName "\v`.*`"
 syn match ktExclExcl "!!"
 syn match ktArrow "->"
 
+syn match ktLParen /(/
+syn match ktRParen /)/
+
+syn match ktIdentifier "_?[[:alpha:]]\+[[:digit:]]*" contained
+syn match ktArgs "(.*)" contains=ktString,ktNumber,ktIdentifier,ktLParen,ktRParen
+syn match ktFunction "\w\+(.*)" contains=ktArgs
+
+hi def link ktFunction Function
+hi def link ktIdentifier Identifier
+
 hi def link ktStatement Statement
 hi def link ktConditional Conditional
 hi def link ktRepeat Repeat
