@@ -44,7 +44,8 @@ syn keyword ktType UByteIterator UInt UIntArray UIntIterator UIntProgression UIn
 syn keyword ktType UninitializedPropertyAccessException Unit UnsafeVariance UnsupportedOperationException UseExperimental Volatile
 
 syn keyword ktModifier annotation companion enum inner internal private protected public abstract final open override sealed vararg dynamic expect actual
-syn keyword ktStructure class object interface typealias fun val var constructor init
+syn keyword ktStructure class object interface typealias fun constructor init
+syn keyword ktDeclStruct val var
 
 syn keyword ktReservedKeyword typeof
 
@@ -53,7 +54,7 @@ syn keyword ktConstant null
 
 syn keyword ktModifier data tailrec lateinit reified external inline noinline crossinline const operator infix suspend
 
-syn match ktOperator "\v\?:|::|\<\=? | \>\=?|[!=]\=\=?|<as>\??|[-!%&*+/|]"
+syn match ktOperator "\v\?:|::|\<\=? | \>\=?|[!=]\=\=?|<as>\??|[-!%&*+/|]|\.\."
 
 syn keyword ktTodo TODO FIXME XXX contained
 syn match ktShebang "\v^#!.*$"
@@ -95,7 +96,7 @@ syn match ktLParen /(/
 syn match ktRParen /)/
 
 syn match ktIdentifier "_?[[:alpha:]]\+[[:digit:]]*" contained
-syn match ktArgs "(.*)" contains=ktString,ktNumber,ktIdentifier,ktLParen,ktRParen
+syn match ktArgs "(.*)" contains=ktString,ktNumber,ktIdentifier,ktLParen,ktRParen,ktType,ktOperator,ktDeclStruct
 syn match ktFunction "\w\+(.*)" contains=ktArgs
 
 hi def link ktFunction Function
@@ -114,6 +115,7 @@ hi def link ktInclude Include
 hi def link ktType Type
 hi def link ktModifier StorageClass
 hi def link ktStructure Structure
+hi def link ktDeclStruct Structure
 hi def link ktTypedef Typedef
 
 hi def link ktBoolean Boolean
