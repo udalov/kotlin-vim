@@ -33,7 +33,7 @@ import java.io.InputStream
 import java.util.zip.ZipFile
 
 val STDLIB = File(System.getProperty("user.home") + "/kotlin/dist/kotlinc/lib/kotlin-stdlib.jar")
-val STDLIB_COMMON = File(System.getProperty("user.home") + "/kotlin/libraries/stdlib/common/build/libs/kotlin-stdlib-common-1.4.255-SNAPSHOT.jar")
+val STDLIB_COMMON = File(System.getProperty("user.home") + "/kotlin/libraries/stdlib/common/build/libs/kotlin-stdlib-common-1.5.255-SNAPSHOT.jar")
 
 val DEBUG = false
 
@@ -179,9 +179,7 @@ fun isPublicAPI(typeAlias: ProtoBuf.TypeAlias, fullName: String, strings: NameRe
 val TOO_COMMON_NAMES = setOf("Companion", "Default")
 
 fun isPublicAPIName(name: String): Boolean =
-    "/internal/" !in name &&
-        "kotlin/coroutines/experimental/" !in name &&
-        name.simpleName !in TOO_COMMON_NAMES
+    "/internal/" !in name && name.simpleName !in TOO_COMMON_NAMES
 
 fun collectClassNames(file: File): List<String> {
     val classNames = mutableListOf<String>()
