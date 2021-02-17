@@ -43,7 +43,7 @@ syn keyword ktType Synchronized Target TestTimeSource ThreadLocal Throwable Thro
 syn keyword ktType UByteIterator UInt UIntArray UIntIterator UIntProgression UIntRange ULong ULongArray ULongIterator ULongProgression ULongRange UShort UShortArray UShortIterator
 syn keyword ktType UninitializedPropertyAccessException Unit UnsafeVariance UnsupportedOperationException UseExperimental Volatile
 
-syn keyword ktModifier annotation companion enum inner internal private protected public abstract final open override sealed vararg dynamic expect actual
+syn keyword ktModifier annotation companion enum inner abstract final open override sealed vararg dynamic expect actual
 syn keyword ktStructure class object interface typealias fun val var constructor init
 
 syn keyword ktReservedKeyword typeof
@@ -51,7 +51,13 @@ syn keyword ktReservedKeyword typeof
 syn keyword ktBoolean true false
 syn keyword ktConstant null
 
-syn keyword ktModifier data tailrec lateinit reified external inline noinline crossinline const operator infix suspend value
+syn keyword ktModifier reified external inline noinline crossinline
+
+syn match ktModifier "\v<(data|value)>\ze\@=.*<class>"
+syn match ktModifier "\v<(tailrec|operator|infix|suspend)>\ze\@=.*<fun>"
+syn match ktModifier "\v<(const)>\ze\@=.*<val>"
+syn match ktModifier "\v<(lateinit)>\ze\@=.*<var>"
+syn match ktModifier "\v<(internal|private|protected|public)>\ze\@=.*<(class|fun|val|var|typealias)>"
 
 syn match ktOperator "\v\?:|::|\<\=? | \>\=?|[!=]\=\=?|<as>\??|[-!%&*+/|]"
 
