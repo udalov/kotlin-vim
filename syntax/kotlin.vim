@@ -1,7 +1,7 @@
 " Vim syntax file
 " Language: Kotlin
 " Maintainer: Alexander Udalov
-" Latest Revision: 11 April 2021
+" Latest Revision: 16 April 2021
 
 if exists('b:current_syntax')
     finish
@@ -57,7 +57,7 @@ syn match ktModifier "\v<(data|value)>\ze\@=.*<class>"
 syn match ktModifier "\v<(tailrec|operator|infix|suspend)>\ze\@=.*<fun>"
 syn match ktModifier "\v<(const)>\ze\@=.*<val>"
 syn match ktModifier "\v<(lateinit)>\ze\@=.*<var>"
-syn match ktModifier "\v<(internal|private|protected|public)>\ze\@=.*<(class|object|fun|val|var|typealias|constructor)>"
+syn match ktModifier "\v<(internal|private|protected|public)>\ze\@=.*<(class|object|interface|typealias|fun|val|var|constructor)>"
 
 syn match ktOperator "\v\?:|::|\<\=? | \>\=?|[!=]\=\=?|<as>\??|[-!%&*+/|]"
 
