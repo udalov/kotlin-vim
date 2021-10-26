@@ -45,11 +45,11 @@ function! GetKotlinIndent()
     let cur_close_brace = cur =~ '^\s*}.*$'
 
     if prev_open_paren && !cur_close_paren || prev_open_brace && !cur_close_brace
-        return prev_indent + &shiftwidth
+        return prev_indent + shiftwidth()
     endif
 
     if cur_close_paren && !prev_open_paren || cur_close_brace && !prev_open_brace
-        return prev_indent - &shiftwidth
+        return prev_indent - shiftwidth()
     endif
 
     return prev_indent
