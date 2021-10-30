@@ -1,7 +1,7 @@
 " Vim syntax file
 " Language: Kotlin
 " Maintainer: Alexander Udalov
-" Latest Revision: 3 July 2021
+" Latest Revision: 30 October 2021
 
 if exists('b:current_syntax')
     finish
@@ -96,6 +96,8 @@ syn match ktEscapedName "\v`.*`"
 
 syn match ktExclExcl "!!"
 syn match ktArrow "->"
+
+syn region ktFold start="{" end="}" transparent fold
 
 exec "syntax sync ccomment ktComment minlines=10"
 
