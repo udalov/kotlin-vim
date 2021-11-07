@@ -8,7 +8,7 @@
  * from Maven Central, or build it in the Kotlin project itself with `./gradlew dist`.
  */
 
-@file:DependsOn("org.jetbrains.kotlinx:kotlinx-metadata-jvm:0.1.0")
+@file:DependsOn("org.jetbrains.kotlinx:kotlinx-metadata-jvm:0.3.0")
 @file:DependsOn("org.ow2.asm:asm:8.0.1")
 
 import kotlinx.metadata.Flag
@@ -33,19 +33,18 @@ import java.io.InputStream
 import java.util.zip.ZipFile
 
 val STDLIB = File(System.getProperty("user.home") + "/kotlin/dist/kotlinc/lib/kotlin-stdlib.jar")
-val STDLIB_COMMON = File(System.getProperty("user.home") + "/kotlin/libraries/stdlib/common/build/libs/kotlin-stdlib-common-1.5.255-SNAPSHOT.jar")
+val STDLIB_COMMON = File(System.getProperty("user.home") + "/kotlin/libraries/stdlib/common/build/libs/kotlin-stdlib-common-1.6.255-SNAPSHOT.jar")
 
 val DEBUG = false
 
 val PREFIX = "syn keyword ktType"
 val CUTOFF = 180
 
-fun extractSimpleNameFromClass(inputStream: InputStream): String? {
+fun extractSimpleNameFromClass(inputStream: InputStream, entryName: String): String? {
     val reader = ClassReader(inputStream)
 
     var kind: Int? = null
     var metadataVersion: IntArray? = null
-    var bytecodeVersion: IntArray? = null
     var data1: Array<String>? = null
     var data2: Array<String>? = null
     var extraString: String? = null
@@ -61,7 +60,6 @@ fun extractSimpleNameFromClass(inputStream: InputStream): String? {
                     when (name) {
                         "k" -> kind = value as Int
                         "mv" -> metadataVersion = value as IntArray
-                        "bv" -> bytecodeVersion = value as IntArray
                         "xs" -> extraString = value as String
                         "pn" -> packageName = value as String
                         "xi" -> extraInt = value as Int
@@ -89,7 +87,7 @@ fun extractSimpleNameFromClass(inputStream: InputStream): String? {
 
     if (kind == null) return null
 
-    val header = KotlinClassHeader(kind, metadataVersion, bytecodeVersion, data1, data2, extraString, packageName, extraInt)
+    val header = KotlinClassHeader(kind, metadataVersion, data1, data2, extraString, packageName, extraInt)
     when (val metadata = KotlinClassMetadata.read(header)) {
         is KotlinClassMetadata.Class -> {
             val klass = metadata.toKmClass()
@@ -103,6 +101,8 @@ fun extractSimpleNameFromClass(inputStream: InputStream): String? {
                 }
             }
         }
+        null -> error("Unsupported Kotlin metadata: $entryName")
+        else -> {}
     }
 
     return null
@@ -187,7 +187,7 @@ fun collectClassNames(file: File): List<String> {
         for (entry in zipFile.entries()) {
             when {
                 entry.name.endsWith(".class") -> {
-                    extractSimpleNameFromClass(zipFile.getInputStream(entry))?.let { simpleName ->
+                    extractSimpleNameFromClass(zipFile.getInputStream(entry), entry.name)?.let { simpleName ->
                         classNames += simpleName
                     }
                 }
