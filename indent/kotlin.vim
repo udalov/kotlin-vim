@@ -1,7 +1,8 @@
 " Vim indent file
-" Language: Kotlin
-" Maintainer: Alexander Udalov
-" Latest Revision: 26 May 2019
+" Language:     Kotlin
+" Maintainer:   Alexander Udalov
+" URL:          https://github.com/udalov/kotlin-vim
+" Last Change:  7 November 2021
 
 if exists('b:did_indent')
     finish
