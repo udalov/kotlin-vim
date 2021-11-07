@@ -62,7 +62,7 @@ syn match ktModifier "\v<(const)>\ze\@=.*<val>"
 syn match ktModifier "\v<(lateinit)>\ze\@=.*<var>"
 syn match ktModifier "\v<(internal|private|protected|public)>\ze\@=.*<(class|object|interface|typealias|fun|val|var|constructor|get|set)>"
 
-syn match ktOperator "\v\?:|::|\<\=? | \>\=?|[!=]\=\=?|<as>\??|[-!%&*+/|]"
+syn match ktOperator "\v\?:|::|\<\=? | \>\=?|[!=]\=\=?|<as>\??|[-*+/]\=?|[!%&|]"
 
 syn keyword ktTodo TODO FIXME XXX contained
 syn match ktShebang "\v^#!.*$"
