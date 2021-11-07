@@ -10,5 +10,8 @@ let b:did_ftplugin = 1
 setlocal comments=sO:*\ -,mO:*\ \ ,exO:*/,s1:/*,mb:*,ex:*/,://
 setlocal commentstring=//\ %s
 
+setlocal formatoptions-=t formatoptions+=croqnl
+silent! setlocal formatoptions+=j
+
 setlocal includeexpr=substitute(v:fname,'\\.','/','g')
 setlocal suffixesadd=.kt
