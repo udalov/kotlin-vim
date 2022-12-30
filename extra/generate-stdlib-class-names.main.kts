@@ -8,18 +8,13 @@
  * from Maven Central, or build it in the Kotlin project itself with `./gradlew dist`.
  */
 
-@file:DependsOn("org.jetbrains.kotlinx:kotlinx-metadata-jvm:0.3.0")
+@file:DependsOn("org.jetbrains.kotlinx:kotlinx-metadata-jvm:0.5.0")
 @file:DependsOn("org.ow2.asm:asm:8.0.1")
 
 import kotlinx.metadata.Flag
 import kotlinx.metadata.KmClass
-import kotlinx.metadata.internal.metadata.ProtoBuf
-import kotlinx.metadata.internal.metadata.builtins.BuiltInsBinaryVersion
-import kotlinx.metadata.internal.metadata.builtins.BuiltInsProtoBuf
-import kotlinx.metadata.internal.metadata.deserialization.Flags
-import kotlinx.metadata.internal.metadata.deserialization.NameResolver
-import kotlinx.metadata.internal.metadata.deserialization.NameResolverImpl
-import kotlinx.metadata.internal.protobuf.ExtensionRegistryLite
+import kotlinx.metadata.KmTypeAlias
+import kotlinx.metadata.internal.common.KotlinCommonMetadata
 import kotlinx.metadata.isLocal
 import kotlinx.metadata.jvm.KotlinClassHeader
 import kotlinx.metadata.jvm.KotlinClassMetadata
@@ -33,7 +28,7 @@ import java.io.InputStream
 import java.util.zip.ZipFile
 
 val STDLIB = File(System.getProperty("user.home") + "/kotlin/dist/kotlinc/lib/kotlin-stdlib.jar")
-val STDLIB_COMMON = File(System.getProperty("user.home") + "/kotlin/libraries/stdlib/common/build/libs/kotlin-stdlib-common-1.6.255-SNAPSHOT.jar")
+val STDLIB_COMMON = File(System.getProperty("user.home") + "/kotlin/libraries/stdlib/common/build/libs/kotlin-stdlib-common-1.8.255-SNAPSHOT.jar")
 
 val DEBUG = false
 
@@ -112,40 +107,32 @@ val String.simpleName: String
     get() = substringAfterLast('/').substringAfterLast('.')
 
 fun extractSimpleNamesFromBuiltins(inputStream: InputStream, packageName: String): List<String> {
-    val proto = inputStream.use { stream ->
-        val version = BuiltInsBinaryVersion.readFrom(stream)
-        require(version.isCompatible())
-        ProtoBuf.PackageFragment.parseFrom(
-            stream,
-            ExtensionRegistryLite.newInstance().apply(BuiltInsProtoBuf::registerAllExtensions)
-        )
-    }
+    val metadata = KotlinCommonMetadata.read(inputStream.use(InputStream::readAllBytes))
+        ?: error("Unsupported Kotlin metadata: $packageName")
+    val module = metadata.toKmModuleFragment()
 
-    val strings = NameResolverImpl(proto.strings, proto.qualifiedNames)
-    val classNames = proto.class_List
-        .filter { isPublicAPI(it, strings) }
+    val classNames = module.classes
+        .filter { isPublicAPI(it) }
         .map {
-            val name = strings.getQualifiedClassName(it.fqName)
+            val name = it.name
             if (DEBUG) {
                 println("builtin class $name -> ${name.simpleName}")
             }
             name.simpleName
         }
 
-    val typeAliasNames = proto.`package`.typeAliasList
-        .mapNotNull {
-            val simpleName = strings.getString(it.name)
-            val fullName = "$packageName/$simpleName"
-            if (isPublicAPI(it, fullName, strings)) {
-                if (DEBUG) {
-                    println("builtin typealias $fullName -> $simpleName")
-                }
-                simpleName
-            } else null
+    val typeAliasNames = module.pkg?.typeAliases.orEmpty()
+        .filter { isPublicAPI(it) }
+        .map {
+            val name = it.name
+            if (DEBUG) {
+                println("builtin typealias $name -> ${name.simpleName}")
+            }
+            name.simpleName
         }
 
     // TODO: fix typealias loading and avoid kotlin-stdlib-common
-    require(typeAliasNames.isEmpty())
+    require(typeAliasNames.isEmpty()) { typeAliasNames }
 
     return classNames + typeAliasNames
 }
@@ -157,22 +144,13 @@ fun isPublicAPI(klass: KmClass): Boolean {
         (Flag.IS_PUBLIC(klass.flags) || Flag.IS_PROTECTED(klass.flags))
 }
 
-fun isPublicAPI(klass: ProtoBuf.Class, strings: NameResolver): Boolean =
-    !strings.isLocalClassName(klass.fqName) &&
-        isPublicAPIName(strings.getQualifiedClassName(klass.fqName)) &&
-        Flags.VISIBILITY.get(klass.flags).let { visibility ->
-            visibility == ProtoBuf.Visibility.PUBLIC || visibility == ProtoBuf.Visibility.PROTECTED
-        }
-
-fun isPublicAPI(typeAlias: ProtoBuf.TypeAlias, fullName: String, strings: NameResolver): Boolean =
-    isPublicAPIName(fullName) &&
-        Flags.VISIBILITY.get(typeAlias.flags).let { visibility ->
-            visibility == ProtoBuf.Visibility.PUBLIC || visibility == ProtoBuf.Visibility.PROTECTED
-        } &&
+fun isPublicAPI(typeAlias: KmTypeAlias): Boolean =
+    isPublicAPIName(typeAlias.name) &&
+        (Flag.IS_PUBLIC(typeAlias.flags) || Flag.IS_PROTECTED(typeAlias.flags)) &&
         // This is kind of a hack, but we don't want deprecated stuff to be used anyway.
         // This is only done for type aliases though, since for classes it's more difficult to load annotations.
-        typeAlias.annotationList.none {
-            strings.getQualifiedClassName(it.id) == "kotlin/Deprecated"
+        typeAlias.annotations.none {
+            it.className == "kotlin/Deprecated"
         }
 
 // These names are too common to be highlighted only on the basis that there are such classes in kotlin-stdlib.
